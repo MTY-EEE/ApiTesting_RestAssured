@@ -6,7 +6,6 @@ import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 
 public class _05_Movies {
@@ -63,13 +62,27 @@ public class _05_Movies {
 
     @Test
     public void TC17_AddMovieRating(){
-
+        given()
+                .spec(reqSpec)
+                .body("{\"value\": 9.5}")
+                .when()
+                .post("https://api.themoviedb.org/3/movie/278/rating")
+                .then()
+                .statusCode(201)
+                .log().body()
+        ;
 
     }
 
     @Test(dependsOnMethods = "TC17_AddMovieRating")
     public void TC18_DeleteMovieRating(){
-
+        given()
+                .spec(reqSpec)
+                .when()
+                .delete("https://api.themoviedb.org/3/movie/278/rating")
+                .then()
+                .statusCode(204)
+        ;
 
     }
 }
