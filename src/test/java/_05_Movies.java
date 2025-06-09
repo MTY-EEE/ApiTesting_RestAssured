@@ -17,6 +17,7 @@ public class _05_Movies {
     @BeforeClass
     public void Setup() // başlangıç işlemleri
     {
+        baseURI ="https://api.themoviedb.org";
         // token ve başlangıç set ayarları için spec oluşturuluyor
         reqSpec = new RequestSpecBuilder()   // istek paketi setlenmesi
                 .setContentType(ContentType.JSON)  // giden body cinsi
@@ -43,6 +44,13 @@ public class _05_Movies {
     @Test
     public void TC13_GetUpcomingMovies(){
 
+        given()
+                .spec(reqSpec)
+                .when()
+                .get("/3/movie/upcoming")
+                .then()
+                .log().body()
+                .statusCode(200);
 
     }
 
