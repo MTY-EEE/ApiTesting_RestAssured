@@ -97,7 +97,15 @@ public class _01_Account {
 
     @Test
     public void TC7_GetRatedMovies() {
+        given()
+                .spec(reqSpec) // Json sectim,Token verdim
+                .when()
+                .get("https://api.themoviedb.org/3/account/22046102/rated/movies")
+                .then()
+                .statusCode(200)
+                .log().body()
 
+        ;
 
     }
 
