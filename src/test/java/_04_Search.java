@@ -49,5 +49,6 @@ public class _04_Search {
                 .body("results.name", hasItem("star wars"))
                 .log().body();
 
+
     }
 }
