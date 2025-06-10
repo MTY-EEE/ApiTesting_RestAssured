@@ -145,7 +145,5 @@ public class _01_Account {
                 .body("results.size()", greaterThan(0))
                 .log().body();
 
-
     }
-
 }
