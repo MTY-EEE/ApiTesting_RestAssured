@@ -6,6 +6,8 @@ import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import static io.restassured.RestAssured.given;
+
 public class _05_Movies {
 
     RequestSpecification reqSpec;
@@ -35,6 +37,14 @@ public class _05_Movies {
     }
     @Test
     public void TC12_GetTopRatedMovies(){
+        given()
+                .spec(reqSpec)
+                .when()
+                .get("https://api.themoviedb.org/3/movie/top_rated")
+                .then()
+                .statusCode(200)
+                .log().body();
+
 
 
     }
