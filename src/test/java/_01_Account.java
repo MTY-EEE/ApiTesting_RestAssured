@@ -131,6 +131,19 @@ public class _01_Account {
     @Test
     public void TC8_GetWatchlistMovies() {
 
+        given()
+                .spec(reqSpec)
+                .queryParam("api_key", "ab2f3dc1bb33c3b438713c3f093b7112")
+                .queryParam("session_id", "5f4012a68dfef8c81c808ee06a7cd744153ff228")
+                .queryParam("language", "tr-TR")
+                .queryParam("sort_by", "created_at.asc")
+                .queryParam("page", 1)
+                .when()
+                .get("https://api.themoviedb.org/3/account/22043178/watchlist/movies")
+                .then()
+                .statusCode(200)
+                .body("results.size()", greaterThan(0))
+                .log().body();
 
     }
 

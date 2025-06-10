@@ -6,6 +6,10 @@ import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.Matchers.greaterThan;
+
 public class _04_Search {
 
     RequestSpecification reqSpec;
@@ -32,6 +36,18 @@ public class _04_Search {
     @Test
     public void TC16_SearchforKeywords(){
 
+        given()
+                .spec(reqSpec)
+                .queryParam("api_key", "ab2f3dc1bb33c3b438713c3f093b7112")
+                .queryParam("query", "star wars")
+                .queryParam("page", 1)
+                .when()
+                .get("https://api.themoviedb.org/3/search/keyword")
+                .then()
+                .statusCode(200)
+                .body("results.size()", greaterThan(0))
+                .body("results.name", hasItem("star wars"))
+                .log().body();
 
     }
 }
