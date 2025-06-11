@@ -18,7 +18,7 @@ public class _05_Movies {
     @BeforeClass
     public void Setup() // başlangıç işlemleri
     {
-        baseURI ="https://api.themoviedb.org";
+        String baseURI = "https://api.themoviedb.org";
         // token ve başlangıç set ayarları için spec oluşturuluyor
         reqSpec = new RequestSpecBuilder()   // istek paketi setlenmesi
                 .setContentType(ContentType.JSON)  // giden body cinsi
@@ -34,8 +34,16 @@ public class _05_Movies {
     }
     @Test
     public void TC11_GetPopularMovies(){
+        given()
 
+                .spec(reqSpec)
+                .when()
+                .get("https://api.themoviedb.org/3/movie/popular")
 
+                .then()
+                .log().all()
+                .statusCode(200)
+        ;
     }
     @Test
     public void TC12_GetTopRatedMovies(){
