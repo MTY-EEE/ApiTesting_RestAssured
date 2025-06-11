@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 
 public class _05_Movies {
 
@@ -63,8 +64,21 @@ public class _05_Movies {
     }
 
     @Test
-    public void TC15_GetMovieDetails(){
+    public void TC15_GetMovieDetails() {
+        given()
+                .spec(reqSpec)
+                .queryParam("api_key", "6f28b1c6e99b76f1e69316fb5d7740d4")
+                .queryParam("query", "snow white")
 
+                .when()
+                .get("/3/movie/447273")
+
+                .then()
+                .statusCode(200)
+                .body("id", equalTo(447273))
+                .body("title", equalTo("Snow White"))
+                .body("original_language", equalTo("en"))
+                .log().body();
 
     }
 
