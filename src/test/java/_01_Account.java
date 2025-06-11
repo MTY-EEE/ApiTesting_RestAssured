@@ -21,10 +21,10 @@ import java.util.Map;
 
 public class _01_Account extends  Utility{
 
+  
+  int account_id = 0;
 
-    int account_id = 0;
-
-
+  
     @Test
     public void TC3_GetAccountDetails() {
         given()
@@ -39,7 +39,32 @@ public class _01_Account extends  Utility{
 
     @Test
     public void TC4_AddMovietoFavorites() {
+        String AccountID = "22040079";
+        baseURI="https://api.themoviedb.org/3/account/";
 
+        Map<String,String>AddFavorites=new HashMap<>();
+        AddFavorites.put("media_type","movie");
+        AddFavorites.put("media_id","550");
+        AddFavorites.put("favorite",String.valueOf(true));
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+        String json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(AddFavorites);
+
+        System.out.println("Response Body \n" + json);
+        } catch (Exception e) {
+        e.printStackTrace();
+        }
+
+        given()
+
+        .spec(reqSpec)
+        .when()
+        .post(AccountID + "/favorite")
+
+        .then()
+        .statusCode(201)
+        ;
     }
 
     @Test
