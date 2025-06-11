@@ -9,24 +9,15 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class _03_MovieList {
+public class _03_MovieList extends Utility{
 
-    RequestSpecification reqSpec;
     String listId = "8535281";
     String invalidSessionId = "this_is_an_invalid_session_id";
     String apiKey = "607ae4b77a41cb68f9cfc37388f60144";
 
-    @BeforeClass
-    public void Setup() {
-        reqSpec = new RequestSpecBuilder()
-                .setBaseUri("https://api.themoviedb.org/3")
-                .setContentType(ContentType.JSON)
-                .log(LogDetail.URI)
-                .build();
-    }
 
     @Test
-    public void unauthorizedAddItemTest() {
+    public void TC_19_UnauthorizedAddItemTest() {
         given()
                 .spec(reqSpec)
                 .pathParam("list_id", listId)
