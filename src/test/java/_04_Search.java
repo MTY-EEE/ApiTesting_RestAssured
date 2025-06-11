@@ -6,32 +6,51 @@ import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class _04_Search {
+import java.util.HashMap;
+import java.util.Map;
 
-    RequestSpecification reqSpec;
-    Faker randomUreteci = new Faker();
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.Matchers.greaterThan;
+
+public class _04_Search extends Utility{
 
 
-    @BeforeClass
-    public void Setup() // başlangıç işlemleri
-    {
-        // token ve başlangıç set ayarları için spec oluşturuluyor
-        reqSpec = new RequestSpecBuilder()   // istek paketi setlenmesi
-                .setContentType(ContentType.JSON)  // giden body cinsi
-                .addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MmVlNGY2ZDNiNzE0MjZjOWFjMGI1NTFkMGMyMDFlZiIsIm5iZiI6MTc0ODcwNDA5OS4yNjMsInN1YiI6IjY4M2IxYjYzYzY3YmIzNzFhMWFkNzc4NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gWO87CUEXEwUeKdxG-Ytzpt5BY3KGdDReUp5i5_6hTA")
-                .log(LogDetail.URI)  // log.uri
-                .build();
+
+    @Test
+    public void TC14_SearchforMovies() {
+
+        given()
+                .spec(reqSpec)
+                .queryParam("api_key", "6f28b1c6e99b76f1e69316fb5d7740d4")
+                .queryParam("query", "snow white")
+
+                .when()
+                .get("https://api.themoviedb.org/3/search/movie")
+
+                .then()
+                .statusCode(200)
+                .body("results.title", hasItem("Snow White"))
+                .log().body();
+
     }
 
     @Test
-    public void TC14_SearchforMovies(){
+    public void TC16_SearchforKeywords() {
 
+        given()
+                .spec(reqSpec)
+                .queryParam("api_key", "ab2f3dc1bb33c3b438713c3f093b7112")
+                .queryParam("query", "star wars")
+                .queryParam("page", 1)
+                .when()
+                .get("https://api.themoviedb.org/3/search/keyword")
+                .then()
+                .statusCode(200)
+                .body("results.size()", greaterThan(0))
+                .body("results.name", hasItem("star wars"))
+                .log().body();
 
     }
 
-    @Test
-    public void TC16_SearchforKeywords(){
-
-
-    }
 }

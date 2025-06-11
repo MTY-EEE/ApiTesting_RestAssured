@@ -6,26 +6,31 @@ import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class _03_MovieList {
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 
-    RequestSpecification reqSpec;
-    Faker randomUreteci = new Faker();
+public class _03_MovieList extends Utility{
 
+    String listId = "8535281";
+    String invalidSessionId = "this_is_an_invalid_session_id";
+    String apiKey = "607ae4b77a41cb68f9cfc37388f60144";
 
-    @BeforeClass
-    public void Setup() // başlangıç işlemleri
-    {
-        // token ve başlangıç set ayarları için spec oluşturuluyor
-        reqSpec = new RequestSpecBuilder()   // istek paketi setlenmesi
-                .setContentType(ContentType.JSON)  // giden body cinsi
-                .addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MmVlNGY2ZDNiNzE0MjZjOWFjMGI1NTFkMGMyMDFlZiIsIm5iZiI6MTc0ODcwNDA5OS4yNjMsInN1YiI6IjY4M2IxYjYzYzY3YmIzNzFhMWFkNzc4NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gWO87CUEXEwUeKdxG-Ytzpt5BY3KGdDReUp5i5_6hTA")
-                .log(LogDetail.URI)  // log.uri
-                .build();
-    }
 
     @Test
-    public void TC19_UnauthorizedAccess(){
-
-
+    public void TC_19_UnauthorizedAddItemTest() {
+        given()
+                .spec(reqSpec)
+                .pathParam("list_id", listId)
+                .queryParam("api_key", apiKey)
+                .queryParam("session_id", invalidSessionId)
+                .body("{\"media_id\": 18}")
+                .when()
+                .post("/3/list/{list_id}/add_item")
+                .then()
+                .statusCode(401)
+                .body("status_code", equalTo(3))
+                .body("status_message", equalTo("Authentication failed: You do not have permissions to access the service."))
+                .log().body();
     }
 }
+
