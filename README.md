@@ -42,11 +42,11 @@ tmdb-api-test/
     └── test/
         ├── java/
         │   ├── 01_Account/            # Test classes
-        |   ├── 02_Genres/            # Test classes
-        |   ├── 03_MovieList/            # Test classes
-        |   ├── 04_Search/            # Test classes
-        |   ├── 05_Movies/            # Test classes
-        │   └── utility/          # # API key and base URL settings
+        │   ├── 02_Genres/             # Test classes
+        │   ├── 03_MovieList/          # Test classes
+        │   ├── 04_Search/             # Test classes
+        │   ├── 05_Movies/             # Test classes
+        │   └── utility/               # API key and base URL settings
         └── resources/
 
  ```      
