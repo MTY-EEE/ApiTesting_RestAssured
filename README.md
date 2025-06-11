@@ -79,11 +79,11 @@ Test types implemented:
 ## 👨‍💻 Contributors
 | Name                     | Role                 | GitHub                                                |
 |--------------------------|----------------------|-------------------------------------------------------|
-| **Serkan Sewöster**      | Team Lead / PO       | [SerkanSewoester](https://github.com/SerkanSewoester) |
+| **Serkan Sewöster**      | QA Automation Tester | [SerkanSewoester](https://github.com/SerkanSewoester) |
 | **Ennur Göl**            | QA Automation Tester | [ennur7](https://github.com/ennur7)                   |
 | **Burak Bora Durmaz**    | QA Automation Tester | [burakboradurmaz](https://github.com/burakboradurmaz) |
 | **Ayşenur Can**          | QA Automation Tester | [aysenur-g-c](https://github.com/aysenur-g-c)         |
 | **İbrahim Can**          | QA Automation Tester | [ibcan9](https://github.com/ibcan9)                   |
 | **Hakan Mert**           | QA Automation Tester | [hakan-mert](https://github.com/hakan-mert)           |
 | **Murat Öksüz**          | QA Automation Tester | [muratoksuz](https://github.com/muratoksuz)           |
-| **Tuğba Yılmaz**         | QA Automation Tester | [MTY-EEE](https://github.com/MTY-EEE)                 |
+| **Tuğba Yılmaz**         | Team Lead            | [MTY-EEE](https://github.com/MTY-EEE)                 |
