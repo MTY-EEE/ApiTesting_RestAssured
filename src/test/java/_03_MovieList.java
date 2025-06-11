@@ -25,7 +25,7 @@ public class _03_MovieList extends Utility{
                 .queryParam("session_id", invalidSessionId)
                 .body("{\"media_id\": 18}")
                 .when()
-                .post("/list/{list_id}/add_item")
+                .post("/3/list/{list_id}/add_item")
                 .then()
                 .statusCode(401)
                 .body("status_code", equalTo(3))
