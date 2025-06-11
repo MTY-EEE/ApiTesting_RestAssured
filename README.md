@@ -6,7 +6,7 @@ This project performs automated testing of [The Movie Database (TMDB)](https://a
 
 ## 🚀 Project Purpose
 
-The main goal of this project is to test whether the RESTful API endpoints provided by TMDB are working correctly and returning the expected results. Since APIs are widely used to transfer data between systems or provide services to developers, ensuring their reliability, accuracy, and stability is crucial.
+The main goal of this project is to test whether the REST API endpoints provided by TMDB are working correctly and returning the expected results. Since APIs are widely used to transfer data between systems or provide services to developers, ensuring their reliability, accuracy, and stability is crucial.
 
 This project aims to:
 
