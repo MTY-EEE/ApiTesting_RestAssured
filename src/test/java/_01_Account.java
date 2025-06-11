@@ -19,38 +19,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class _01_Account {
+public class _01_Account extends  Utility{
 
-    RequestSpecification reqSpec;
-    ResponseSpecification resSpec;
-    Faker randomUreteci = new Faker();
+
     int account_id = 0;
 
-
-    @BeforeClass
-    public void Setup() // başlangıç işlemleri
-    {
-        baseURI ="https://api.themoviedb.org";
-        // token ve başlangıç set ayarları için spec oluşturuluyor
-        reqSpec = new RequestSpecBuilder()   // istek paketi setlenmesi
-                .setContentType(ContentType.JSON)  // giden body cinsi
-                .addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MmVlNGY2ZDNiNzE0MjZjOWFjMGI1NTFkMGMyMDFlZiIsIm5iZiI6MTc0ODcwNDA5OS4yNjMsInN1YiI6IjY4M2IxYjYzYzY3YmIzNzFhMWFkNzc4NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.gWO87CUEXEwUeKdxG-Ytzpt5BY3KGdDReUp5i5_6hTA")
-                .log(LogDetail.URI)  // log.uri
-                .build();
-        resSpec = new ResponseSpecBuilder()
-                .log(LogDetail.BODY)
-                .expectContentType(ContentType.JSON)
-                .build();
-    }
 
     @Test
     public void TC3_GetAccountDetails() {
         given()
                 .spec(reqSpec)
-
                 .when()
                 .get("https://api.themoviedb.org/3/account")
-
                 .then()
                 .contentType(ContentType.JSON)
                 .statusCode(200)
@@ -88,7 +68,7 @@ public class _01_Account {
                 .post(AccountID + "/watchlist")
 
                 .then()
-                .statusCode(403)
+                .statusCode(204)
         ;
     }
 
@@ -137,7 +117,7 @@ public class _01_Account {
         given()
                 .spec(reqSpec)
                 .queryParam("api_key", "ab2f3dc1bb33c3b438713c3f093b7112")
-                .queryParam("session_id", "5f4012a68dfef8c81c808ee06a7cd744153ff228")
+                //.queryParam("session_id", "5f4012a68dfef8c81c808ee06a7cd744153ff228")
                 .queryParam("language", "tr-TR")
                 .queryParam("sort_by", "created_at.asc")
                 .queryParam("page", 1)
