@@ -6,6 +6,9 @@ import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.Matchers.greaterThan;
@@ -28,13 +31,25 @@ public class _04_Search {
     }
 
     @Test
-    public void TC14_SearchforMovies(){
+    public void TC14_SearchforMovies() {
 
+        given()
+                .spec(reqSpec)
+                .queryParam("api_key", "6f28b1c6e99b76f1e69316fb5d7740d4")
+                .queryParam("query", "snow white")
+
+                .when()
+                .get("https://api.themoviedb.org/3/search/movie")
+
+                .then()
+                .statusCode(200)
+                .body("results.title", hasItem("Snow White"))
+                .log().body();
 
     }
 
     @Test
-    public void TC16_SearchforKeywords(){
+    public void TC16_SearchforKeywords() {
 
         given()
                 .spec(reqSpec)
